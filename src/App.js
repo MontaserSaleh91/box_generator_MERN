@@ -1,25 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
-
+import React, { useState } from 'react';
+import MessageFormComponent from './components/MessageFormComponent';
+import MessageDisplayComponent from './components/MessageDisplayComponent';
+    
+    
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [currentMsg, setCurrentMsg] = useState([]);
+
+    const youveGotMail = ( newMessage ) => {
+      setCurrentMsg( currentMsg.concat(newMessage));
+  }
+
+    
+    return (
+        <>
+            <MessageFormComponent onNewMessage={ youveGotMail } />
+            <MessageDisplayComponent message={ currentMsg } />
+        </>
+    );
 }
 
+
+    
 export default App;
